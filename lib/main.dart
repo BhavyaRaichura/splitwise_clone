@@ -13,11 +13,13 @@ import 'temp.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // This checks for CI/CD environment variables first, then defaults to your temp.dart
+  const String supabaseUrl = String.fromEnvironment('NahiHai', defaultValue: NahiHai);
+  const String supabaseKey = String.fromEnvironment('NahiDunga', defaultValue: NahiDunga);
 
-  // 2. Wake up Supabase (Your existing code)
   await Supabase.initialize(
-    url: NahiHai, 
-    anonKey: NahiDunga, // Keep your actual key here!
+    url: supabaseUrl, 
+    anonKey: supabaseKey,
   );
 
   runApp(const SplitApp());
