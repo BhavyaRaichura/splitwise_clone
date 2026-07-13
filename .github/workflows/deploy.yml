@@ -1,5 +1,9 @@
 name: Deploy to GitHub Pages
 
+# 1. ADD THIS PERMISSIONS BLOCK AT THE TOP
+permissions:
+  contents: write
+
 on:
   push:
     branches:
@@ -9,17 +13,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          
+      - run: flutter pub get
+      
+      # 2. ENSURE YOUR BUILD STEP USES THE DEFINES
       - run: |
-          flutter pub get
           flutter build web --base-href /splitwise_clone/ \
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
+
+      # 3. ENSURE THE DEPLOY STEP USES THE TOKEN
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/web
+          publish_branch: gh-pages
