@@ -13,10 +13,11 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter pub get
-      - run: flutter build web --base-href /splitwise_clone/
-      --dart-define=SUPABASE_URL=${{ secrets.NahiHai }} \
-      --dart-define=SUPABASE_KEY=${{ secrets.NahiDunga }}
+      - run: |
+          flutter pub get
+          flutter build web --base-href /YOUR_REPOSITORY_NAME/ \
+          --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
+          --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

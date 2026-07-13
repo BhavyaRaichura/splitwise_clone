@@ -13,9 +13,9 @@ import 'temp.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // This checks for CI/CD environment variables first, then defaults to your temp.dart
-  const String supabaseUrl = String.fromEnvironment('NahiHai', defaultValue: NahiHai);
-  const String supabaseKey = String.fromEnvironment('NahiDunga', defaultValue: NahiDunga);
+  // This is the "Magic" part:
+  const String supabaseUrl = String.fromEnvironment('SUPABASE_URL', defaultValue: NahiHai);
+  const String supabaseKey = String.fromEnvironment('SUPABASE_KEY', defaultValue: NahiDunga);
 
   await Supabase.initialize(
     url: supabaseUrl, 
