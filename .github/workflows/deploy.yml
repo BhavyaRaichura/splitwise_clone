@@ -15,7 +15,7 @@ jobs:
           channel: 'stable'
       - run: |
           flutter pub get
-          flutter build web --base-href /YOUR_REPOSITORY_NAME/ \
+          flutter build web --base-href /splitwise_clone/ \
           --dart-define=SUPABASE_URL=${{ secrets.SUPABASE_URL }} \
           --dart-define=SUPABASE_KEY=${{ secrets.SUPABASE_KEY }}
       - name: Deploy
