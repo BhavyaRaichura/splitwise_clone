@@ -7,15 +7,13 @@ import 'package:fl_chart/fl_chart.dart';
 import 'dart:convert';
 import 'dart:html' as html; // The native web library!
 import 'dart:ui'; // Required for ImageFilter
-import 'temp.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // This is the "Magic" part:
-  const String supabaseUrl = String.fromEnvironment('SUPABASE_URL', defaultValue: NahiHai);
-  const String supabaseKey = String.fromEnvironment('SUPABASE_KEY', defaultValue: NahiDunga);
+  const String supabaseUrl = String.fromEnvironment('SUPABASE_URL', defaultValue: '');
+  const String supabaseKey = String.fromEnvironment('SUPABASE_KEY', defaultValue: '');
 
   await Supabase.initialize(
     url: supabaseUrl, 
